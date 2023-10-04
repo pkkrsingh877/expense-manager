@@ -3,7 +3,11 @@ const app =  express();
 
 require('dotenv').config()
 
-app.use();
+// Files for Route Handlers
+const expenseRoutes = require('./routes/expense');
+
+// Middleware for Routes
+app.use('/expenses', expenseRoutes);
 
 app.get('/', (req, res) => {
     res.send('App is up and running!');

@@ -3,6 +3,8 @@ const app =  express();
 
 require('dotenv').config()
 
+app.use();
+
 app.get('/', (req, res) => {
     res.send('App is up and running!');
 });

@@ -1,0 +1,18 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.nav-links{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.nav-link{
+    padding: 1rem;
+    text-decoration: none;
+}

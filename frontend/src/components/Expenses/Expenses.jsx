@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom';
+
 const Expenses = () => {
     return ( 
         <div>
-            Here you can list all expenses. 
-            You can also choose to update or delete any expense.
+            <Link to={`/create`} >Add an Expense</Link>
         </div>
      );
 }

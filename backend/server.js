@@ -1,8 +1,23 @@
 const express = require('express');
 const app =  express();
 const morgan = require('morgan');
-
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
+const mongoose = require('mongoose');
+
+//database setup
+const databaseSetup = async () => {
+    try {
+        await mongoose.connect('mongodb://127.0.0.1:27017/expenseapp');
+        console.log('DB Connection Successful');
+    } catch (error) {
+        console.log('DB Connection Failed');
+        console.log(error);
+    }
+}
+
+databaseSetup();
 
 // Middleware to encode URL-encoded data in POST requests
 app.use(morgan('dev'));
@@ -21,7 +36,6 @@ app.use(cors({
 
 // Files for Route Handlers
 const expenseRoutes = require('./routes/expense');
-
 // Middleware for Routes
 app.use('/expenses', expenseRoutes);
 

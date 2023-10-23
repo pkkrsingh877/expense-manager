@@ -1,8 +1,14 @@
 const Expense = () => {
     return ( 
         <div>
-            Here you can view individual Expense that you have created.
-            You can also choose to update or delete the expense from here.
+            <b>Product Id: </b>
+            <b>Product Name: </b>
+            <b>Number of Products: </b>
+            <b>Total Amount: </b>
+            <b>Notes: </b>
+            <b>Type of Expense: </b>
+            <b>Created At: </b>
+            <b>Updated At: </b>
         </div>
      );
 }

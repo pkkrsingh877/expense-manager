@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import '../../css/form.css';
-// import useFetch from '../Utilities/useFetch';
 
 const Create = () => {
 
     const [productName, setProductName] = useState('');
     const [totalAmount, setTotalAmount] = useState('');
-    const [numOfProduct, setNumOfProduct] = useState('');
+    const [numberOfProducts, setNumberOfProducts] = useState('');
     const [notes, setNotes] = useState('');
-    const [typeOfExpense, setTypeOfExpense] = useState('');
+    const [typeOfExpense, setTypeOfExpense] = useState('default');
     
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -19,9 +18,9 @@ const Create = () => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: {
-              productName, totalAmount, numOfProduct, notes, typeOfExpense
-            },
+            body: JSON.stringify({
+              productName, totalAmount, numberOfProducts, notes, typeOfExpense
+            }),
           });
     };
 
@@ -34,12 +33,12 @@ const Create = () => {
                 value={productName}
                 onChange={(event) => setProductName(event.target.value)}
             />
-            Number of Product: 
+            Number of Products: 
             <input
                 type="text"
                 placeholder="Number of Product"
-                value={numOfProduct}
-                onChange={(event) => setNumOfProduct(event.target.value)}
+                value={numberOfProducts}
+                onChange={(event) => setNumberOfProducts(event.target.value)}
             />
             Total Amount: 
             <input

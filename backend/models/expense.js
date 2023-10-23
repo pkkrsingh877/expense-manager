@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const ExpenseSchema = new mongoose.Schema({
-  item: String,
-  numberOfItems: Number,
-  totalPrice: Number,
+  productName: String,
+  numberOfProducts: Number,
+  totalAmount: Number,
   notes: String,
   typeOfExpense: {
     type: String,

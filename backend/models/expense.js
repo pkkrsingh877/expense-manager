@@ -5,6 +5,11 @@ const ExpenseSchema = new mongoose.Schema({
   numberOfItems: Number,
   totalPrice: Number,
   notes: String,
+  typeOfExpense: {
+    type: String,
+    enum: ['default','future','recurring'],
+    default: 'default'
+  },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }
 });

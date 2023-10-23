@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Expense = require('..models/Expense');
+const Expense = require('../models/expense');
 
 router.get('/', async (req, res) => {
     try {
@@ -14,8 +14,8 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const { item, numberOfItems, totalPrice, notes } = req.body;
-        const expense = await Expense.create({ item, numberOfItems, totalPrice, notes });
+        const { item, numberOfItems, totalPrice, notes, typeOfExpense } = req.body;
+        const expense = await Expense.create({ item, numberOfItems, totalPrice, notes, typeOfExpense });
         res.status(200).json(expense);
     } catch (error) {
         console.log(error);

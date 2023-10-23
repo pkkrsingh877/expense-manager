@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import '../../css/form.css';
+// import useFetch from '../Utilities/useFetch';
 
 const Create = () => {
 
@@ -7,11 +8,21 @@ const Create = () => {
     const [totalAmount, setTotalAmount] = useState('');
     const [numOfProduct, setNumOfProduct] = useState('');
     const [notes, setNotes] = useState('');
+    const [typeOfExpense, setTypeOfExpense] = useState('');
     
     const handleSubmit = (event) => {
         event.preventDefault();
 
         // Add the expense to your backend here
+        const response = fetch('http://localhost:8000/expenses', {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: {
+              productName, totalAmount, numOfProduct, notes, typeOfExpense
+            },
+          });
     };
 
     return (
@@ -43,6 +54,15 @@ const Create = () => {
                 value={notes}
                 onChange={(event) => setNotes(event.target.value)}
             />
+            Type Of Expense:
+            <select
+                value={typeOfExpense}
+                onChange={(event) => setTypeOfExpense(event.target.value)}
+            >
+                <option value="default">Default</option>
+                <option value="recurring">Recurring</option>
+                <option value="future">Future</option>
+            </select>
             <button type="submit">Add Expense</button>
         </form>
     );

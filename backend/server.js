@@ -1,7 +1,23 @@
 const express = require('express');
 const app =  express();
+const morgan = require('morgan');
 
-require('dotenv').config()
+require('dotenv').config();
+
+// Middleware to encode URL-encoded data in POST requests
+app.use(morgan('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+app.use(cookieParser());
+
+// cors setup
+app.use(cors({
+    origin: 'http://localhost:3000', // Adjust this to your frontend's origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Add DELETE method
+    allowedHeaders: ['Content-Type', 'Authorization'], // Add headers you want to allow
+    credentials: true, // Allow credentials (cookies)
+}));
 
 // Files for Route Handlers
 const expenseRoutes = require('./routes/expense');

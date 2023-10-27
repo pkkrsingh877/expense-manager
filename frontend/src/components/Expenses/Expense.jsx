@@ -1,7 +1,7 @@
 const Expense = () => {
     return ( 
         <div>
-            <b>Product Id: </b>
+            <b>Product Id: </b> 
             <b>Product Name: </b>
             <b>Number of Products: </b>
             <b>Total Amount: </b>

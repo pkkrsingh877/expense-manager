@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 const Expenses = () => {
     const [expenses, setExpenses] = useState([]);
     const { data, pending, error } = useFetch('http://localhost:8000/expenses');
-    // will complete this
+    // will complete this 100%
     useEffect(() => {
         if (data) {
             setExpenses(data);

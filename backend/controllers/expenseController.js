@@ -50,7 +50,7 @@ const updateExpense = async (req, res) => {
 
 const deleteExpense = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { id } = req.body;
         const expense = await Expense.findByIdAndDelete(id);
         res.status(200).json(expense);
     } catch (error) {

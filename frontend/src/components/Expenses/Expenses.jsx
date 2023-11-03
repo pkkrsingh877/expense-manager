@@ -6,16 +6,21 @@ import  '../../css/expenses.css';
 const Expenses = () => {
     const [expenses, setExpenses] = useState([]);
     const { data, pending, error } = useFetch('http://localhost:8000/expenses');
-    const deleteButton = document.querySelector('#deleteButton');
-    const updateButton = document.querySelector('#updateButton');
+    
+    const handleUpdate = (id) => {
 
-    updateButton.addEventListener('click', (e) => {
-        // update operation code
-    });
+    }
 
-    deleteButton.addEventListener('click', (e) => {
-        // delete operation code
-    });
+    const handleDelete = async (id) => {
+        // Add the expense to your backend here
+        const response = await fetch(`http://localhost:8000/expenses`, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({id})
+          });
+    }
 
     useEffect(() => {
         if (data) {
@@ -32,8 +37,8 @@ const Expenses = () => {
                     <li key={expense._id} className='list-items'> 
                     <span>{expense.productName}</span> 
                     <span>&#x20B9;{expense.totalAmount}</span>
-                    <button id="updateButton">Update</button>
-                    <button id="deleteButton">Delete</button>
+                    <button className="updateButton">Update</button>
+                    <button className="deleteButton" onClick={() => handleDelete(expense._id)}>Delete</button>
                     </li>
                 ))}
             </ul>

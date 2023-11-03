@@ -1,0 +1,15 @@
+/* .list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+} */
+
+.list-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.list-items button {
+    padding: 1rem;
+    margin: 0 1rem;
+}

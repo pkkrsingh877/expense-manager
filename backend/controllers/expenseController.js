@@ -36,7 +36,7 @@ const createExpense = async (req, res) => {
 const updateExpense = async (req, res) => {
     try {
         const { id } = req.params;
-        const { productName, numberOfProducts, totalAmount, notes } = req.body;
+        const { productName, numberOfProducts, totalAmount, notes, typeOfExpense } = req.body;
         const expense = await Expense.findByIdAndUpdate(id, {
             productName, numberOfProducts, totalAmount, notes, typeOfExpense, updatedAt: Date.now()
         });

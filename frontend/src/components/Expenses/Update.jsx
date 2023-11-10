@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 const UpdateExpense = () => {
     
@@ -7,12 +8,12 @@ const UpdateExpense = () => {
     const [numberOfProducts, setNumberOfProducts] = useState('');
     const [notes, setNotes] = useState('');
     const [typeOfExpense, setTypeOfExpense] = useState('default');
-    
+    const { id } = useParams();
     const handleSubmit = (event) => {
         event.preventDefault();
 
         // Add the expense to your backend here
-        const response = fetch('http://localhost:8000/expenses', {
+        const response = fetch(`http://localhost:8000/expenses/update/${id}`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

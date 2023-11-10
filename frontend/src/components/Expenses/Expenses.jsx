@@ -31,7 +31,9 @@ const Expenses = () => {
             <ul className='list' type='none'>
                 {expenses && expenses.map(expense => (
                     <li key={expense._id} className='list-items'>
+                        <Link to={`/${expense._id}`}>
                         <span>{expense.productName}</span>
+                        </Link>
                         <span>&#x20B9;{expense.totalAmount}</span>
                         <Link to={`/update/${expense._id}`}>
                             <button className="updateButton">Update</button>

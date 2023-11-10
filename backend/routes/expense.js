@@ -5,6 +5,8 @@ const { getExpenses, createExpense, getExpense, updateExpense, deleteExpense } =
 
 router.get('/', getExpenses);
 
+router.get('/:id', getExpense);
+
 router.post('/', createExpense);
 
 router.patch('/:id', updateExpense);

@@ -34,21 +34,22 @@ const Expenses = () => {
 
     return (
         <div>
-            <Link to={`/expense/create`} >Add an Expense</Link>
-            <ul className='list' type='none'>
-                {expenses && expenses.map(expense => (
-                    <li key={expense._id} id={expense._id} className='list-items'>
-                        <Link to={`/expense/${expense._id}`}>
-                            <span>{expense.productName}</span>
-                        </Link>
-                        <span>&#x20B9;{expense.totalAmount}</span>
-                        <Link to={`/expense/update/${expense._id}`} className="updateButton">
+            {expenses && expenses.map(expense => (
+                <div className="card mb-3 shadow p-3 bg-body rounded" key={expense._id} id={expense._id}>
+                    <div className="card-body">
+                        <h5 className="card-title"><Link to={`/expense/${expense._id}`}>
+                            {expense.productName}
+                        </Link></h5>
+                        <p className="card-text">&#x20B9;{expense.totalAmount}</p>
+                        <div className="buttons">
+                        <Link to={`/expense/update/${expense._id}`} className="updateButton btn btn-primary">
                             Update
                         </Link>
-                        <button className="deleteButton" onClick={() => handleDelete(expense._id)}>Delete</button>
-                    </li>
-                ))}
-            </ul>
+                        <button className="deleteButton  btn btn-danger" onClick={() => handleDelete(expense._id)}>Delete</button>
+                        </div>
+                    </div>
+                </div>
+            ))}
         </div>
     );
 }

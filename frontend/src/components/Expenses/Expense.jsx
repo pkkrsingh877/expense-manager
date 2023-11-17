@@ -1,32 +1,26 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import useFetch from '../Utilities/useFetch';
 
 const Expense = () => {
     const { id } = useParams();
     const [expense, setExpense] = useState();
+    console.log(id);
+    const { data, pending, error } = useFetch(`http://localhost:8000/expenses/${id}`);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(`http://localhost:8000/expenses/${id}`);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                if (data) {
-                    setExpense(data)
-                }
-            }
-            catch (error) {
-                console.log(error);
-            }
+        if(data){
+            setExpense(data);
         }
-        fetchData();
-    }, [id]);
+    },[data]);
 
     return (
         <div>
-            {console.log(expense)}
+            {error && <div>Error: {error}</div>}
+            {pending && <div>Loading...</div>}
+
+            {expense && (
+                <>
             <b>Product Id: {expense._id}</b>
             <b>Product Name: {expense.productName}</b>
             <b>Number of Products: {expense.numberOfProducts}</b>
@@ -35,7 +29,8 @@ const Expense = () => {
             <b>Type of Expense: {expense.typeOfExpense}</b>
             <b>Created At: {expense.createdAt}</b>
             <b>Updated At: {expense.updatedAt}</b>
-        </div>
+            </>)}
+        </div> 
     );
 }
 

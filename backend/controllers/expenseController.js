@@ -52,10 +52,10 @@ const deleteExpense = async (req, res) => {
     try {
         const { id } = req.body;
         const expense = await Expense.findByIdAndDelete(id);
-        res.status(200).json(expense);
+        res.status(200).json({ status: 'success' });
     } catch (error) {
         console.log(error);
-        res.status(400).json({"error": "Couldn't Delete the document"});
+        res.status(400).json({ status: 'failure' });
     }
 }
 

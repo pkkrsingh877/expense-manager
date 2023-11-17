@@ -42,8 +42,8 @@ const Expenses = () => {
                             <span>{expense.productName}</span>
                         </Link>
                         <span>&#x20B9;{expense.totalAmount}</span>
-                        <Link to={`/expense/update/${expense._id}`}>
-                            <button className="updateButton">Update</button>
+                        <Link to={`/expense/update/${expense._id}`} className="updateButton">
+                            Update
                         </Link>
                         <button className="deleteButton" onClick={() => handleDelete(expense._id)}>Delete</button>
                     </li>

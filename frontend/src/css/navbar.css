@@ -3,6 +3,8 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
+    margin-bottom: 1rem;
+    padding: 0;
 }
 
 .nav-links{

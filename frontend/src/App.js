@@ -6,6 +6,7 @@ import Update from './components/Expenses/Update';
 import NotFound from './components/NotFound';
 import About from './components/About';
 import Navbar from './components/Utilities/Navbar';
+import './css/content.css';
 
 function App() {
   return (

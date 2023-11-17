@@ -37,7 +37,7 @@ app.use(cors({
 // Files for Route Handlers
 const expenseRoutes = require('./routes/expense');
 // Middleware for Routes
-app.use('/expenses', expenseRoutes);
+app.use('/expense', expenseRoutes);
 
 app.get('/', (req, res) => {
     res.send('App is up and running!');

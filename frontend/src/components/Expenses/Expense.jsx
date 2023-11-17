@@ -6,7 +6,7 @@ const Expense = () => {
     const { id } = useParams();
     const [expense, setExpense] = useState();
     console.log(id);
-    const { data, pending, error } = useFetch(`http://localhost:8000/expenses/${id}`);
+    const { data, pending, error } = useFetch(`http://localhost:8000/expense/${id}`);
 
     useEffect(() => {
         if (data) {

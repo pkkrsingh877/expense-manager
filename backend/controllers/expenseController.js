@@ -25,11 +25,10 @@ const createExpense = async (req, res) => {
     try {
         const { productName, numberOfProducts, totalAmount, notes, typeOfExpense } = req.body;
         const expense = await Expense.create({ productName, numberOfProducts, totalAmount, notes, typeOfExpense });
-        console.log(expense);
-        res.status(200).json(expense);
+        res.status(200).json({ id: expense._id });
     } catch (error) {
         console.log(error);
-        res.status(400).json({"error": "Couldn't Create Expense in DB"});
+        res.status(400).json({ error: "Couldn't Create Expense in DB" });
     }
 }
 
@@ -40,8 +39,7 @@ const updateExpense = async (req, res) => {
         const expense = await Expense.findByIdAndUpdate(id, {
             productName, numberOfProducts, totalAmount, notes, typeOfExpense, updatedAt: Date.now()
         });
-        console.log(expense);
-        res.status(200).json(expense);
+        res.status(200).json({ id: expense._id });
     } catch (error) {
         console.log(error);
         res.status(400).json({"error": "Couldn't Update the document"});

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import useFetch from '../Utilities/useFetch';
 
 const UpdateExpense = () => {
     
@@ -9,19 +10,38 @@ const UpdateExpense = () => {
     const [notes, setNotes] = useState('');
     const [typeOfExpense, setTypeOfExpense] = useState('default');
     const { id } = useParams();
-    const handleSubmit = (event) => {
+    const navigate = useNavigate();
+
+    const { data, pending, error } = useFetch(`http://localhost:8000/expense/${id}`);
+
+    useEffect(() => {
+        if(data){
+            setProductName(data.productName);
+            setTotalAmount(data.totalAmount);
+            setNotes(data.notes);
+            setNumberOfProducts(data.numberOfProducts);
+            setTypeOfExpense(data.typeOfExpense);
+        }
+    },[data])
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         // Add the expense to your backend here
-        const response = fetch(`http://localhost:8000/expenses/update/${id}`, {
-            method: "POST",
+        const response = await fetch(`http://localhost:8000/expense/${id}`, {
+            method: "PATCH",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
               productName, totalAmount, numberOfProducts, notes, typeOfExpense
             }),
-          });
+        });
+
+        const message = await response.json();
+        if(message){
+            navigate(`/expense/${message.id}`);
+        }
     };
 
     return (

@@ -6,12 +6,12 @@ import '../../css/expenses.css';
 
 const Expenses = () => {
     const [expenses, setExpenses] = useState([]);
-    const { data, pending, error } = useFetch('http://localhost:8000/expenses');
+    const { data, pending, error } = useFetch('http://localhost:8000/expense');
     const navigate = useNavigate();
 
     const handleDelete = async (id) => {
         // Add the expense to your backend here
-        const response = await fetch(`http://localhost:8000/expenses`, {
+        const response = await fetch(`http://localhost:8000/expense`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -21,10 +21,10 @@ const Expenses = () => {
 
         const message = await response.json();
 
-        if (message.status == 'success') {
+        if (message.status === 'success') {
             console.log(message.status);
             setExpenses((prevExpenses) => prevExpenses.filter(expense => expense._id !== id));
-        } else if (message.status == 'failure') {
+        } else if (message.status === 'failure') {
             console.log(message.status);
         }
     }
@@ -38,15 +38,15 @@ const Expenses = () => {
 
     return (
         <div>
-            <Link to={`/create`} >Add an Expense</Link>
+            <Link to={`/expense/create`} >Add an Expense</Link>
             <ul className='list' type='none'>
                 {expenses && expenses.map(expense => (
                     <li key={expense._id} id={expense._id} className='list-items'>
-                        <Link to={`/${expense._id}`}>
+                        <Link to={`/expense/${expense._id}`}>
                             <span>{expense.productName}</span>
                         </Link>
                         <span>&#x20B9;{expense.totalAmount}</span>
-                        <Link to={`/update/${expense._id}`}>
+                        <Link to={`/expense/update/${expense._id}`}>
                             <button className="updateButton">Update</button>
                         </Link>
                         <button className="deleteButton" onClick={() => handleDelete(expense._id)}>Delete</button>

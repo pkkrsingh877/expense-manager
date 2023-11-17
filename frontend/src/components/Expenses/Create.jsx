@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import '../../css/form.css';
+import { useNavigate } from 'react-router-dom';
 
 const Create = () => {
 
@@ -8,12 +9,13 @@ const Create = () => {
     const [numberOfProducts, setNumberOfProducts] = useState('');
     const [notes, setNotes] = useState('');
     const [typeOfExpense, setTypeOfExpense] = useState('default');
+    const navigate = useNavigate();
     
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         // Add the expense to your backend here
-        const response = fetch('http://localhost:8000/expenses', {
+        const response = await fetch('http://localhost:8000/expense', {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -21,7 +23,11 @@ const Create = () => {
             body: JSON.stringify({
               productName, totalAmount, numberOfProducts, notes, typeOfExpense
             }),
-          });
+        });
+
+        const message = await response.json();
+        console.log(message);
+        navigate(`/expense/${message.id}`);
     };
 
     return (

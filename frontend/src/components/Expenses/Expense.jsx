@@ -5,7 +5,7 @@ import useFetch from '../Utilities/useFetch';
 const Expense = () => {
     const { id } = useParams();
     const [expense, setExpense] = useState();
-    console.log(id);
+
     const { data, pending, error } = useFetch(`http://localhost:8000/expense/${id}`);
 
     useEffect(() => {
@@ -22,7 +22,7 @@ const Expense = () => {
             {expense && (
                 <>
                 <h2>Product Data:</h2>
-                    <table class="table">
+                    <table className="table">
                         <thead>
                             <tr>
                                 <th scope="col">Attributes</th>
@@ -40,23 +40,23 @@ const Expense = () => {
                             </tr>
                             <tr>
                                 <th scope="row">Total Amount</th>
-                                <td colspan="2">{expense.totalAmount}</td>
+                                <td colSpan="2">{expense.totalAmount}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Notes</th>
-                                <td colspan="2">{expense.notes}</td>
+                                <td colSpan="2">{expense.notes}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Type Of Expense</th>
-                                <td colspan="2">{expense.typeOfExpense}</td>
+                                <td colSpan="2">{expense.typeOfExpense}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Created At</th>
-                                <td colspan="2">{expense.createdAt}</td>
+                                <td colSpan="2">{expense.createdAt}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Updated At</th>
-                                <td colspan="2">{expense.updatedAt}</td>
+                                <td colSpan="2">{expense.updatedAt}</td>
                             </tr>
                         </tbody>
                     </table>

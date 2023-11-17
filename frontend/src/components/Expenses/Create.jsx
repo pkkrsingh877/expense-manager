@@ -10,7 +10,7 @@ const Create = () => {
     const [notes, setNotes] = useState('');
     const [typeOfExpense, setTypeOfExpense] = useState('default');
     const navigate = useNavigate();
-    
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -18,58 +18,60 @@ const Create = () => {
         const response = await fetch('http://localhost:8000/expense', {
             method: "POST",
             headers: {
-              "Content-Type": "application/json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              productName, totalAmount, numberOfProducts, notes, typeOfExpense
+                productName, totalAmount, numberOfProducts, notes, typeOfExpense
             }),
         });
 
         const message = await response.json();
-        console.log(message);
         navigate(`/expense/${message.id}`);
     };
 
     return (
-        <form className='form' onSubmit={handleSubmit}>
-            Product Name:
-            <input
-                type="text"
-                placeholder="Product Name"
-                value={productName}
-                onChange={(event) => setProductName(event.target.value)}
-            />
-            Number of Products: 
-            <input
-                type="text"
-                placeholder="Number of Product"
-                value={numberOfProducts}
-                onChange={(event) => setNumberOfProducts(event.target.value)}
-            />
-            Total Amount: 
-            <input
-                type="number"
-                placeholder="Total amount"
-                value={totalAmount}
-                onChange={(event) => setTotalAmount(event.target.value)}
-            />
-            Notes:
-            <textarea
-                placeholder="Notes"
-                value={notes}
-                onChange={(event) => setNotes(event.target.value)}
-            />
-            Type Of Expense:
-            <select
-                value={typeOfExpense}
-                onChange={(event) => setTypeOfExpense(event.target.value)}
-            >
-                <option value="default">Default</option>
-                <option value="recurring">Recurring</option>
-                <option value="future">Future</option>
-            </select>
-            <button type="submit">Add Expense</button>
-        </form>
+        <>
+            <h4>Add Expense:</h4>
+            <form className='form' onSubmit={handleSubmit}>
+                Product name:
+                <input
+                    type="text"
+                    placeholder="Product Name"
+                    value={productName}
+                    onChange={(event) => setProductName(event.target.value)}
+                />
+                Number of Products:
+                <input
+                    type="text"
+                    placeholder="Number of Product"
+                    value={numberOfProducts}
+                    onChange={(event) => setNumberOfProducts(event.target.value)}
+                />
+                Total Amount:
+                <input
+                    type="number"
+                    placeholder="Total amount"
+                    value={totalAmount}
+                    onChange={(event) => setTotalAmount(event.target.value)}
+                />
+                Notes:
+                <textarea
+                    placeholder="Notes"
+                    value={notes}
+                    onChange={(event) => setNotes(event.target.value)}
+                />
+                Type Of Expense:
+                <select
+                    value={typeOfExpense}
+                    onChange={(event) => setTypeOfExpense(event.target.value)}
+                >
+                    <option value="default">Default</option>
+                    <option value="recurring">Recurring</option>
+                    <option value="future">Future</option>
+                </select>
+                <button type="submit">Add Expense</button>
+            </form>
+        </>
     );
 }
 

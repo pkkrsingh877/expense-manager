@@ -9,10 +9,10 @@ const Expense = () => {
     const { data, pending, error } = useFetch(`http://localhost:8000/expenses/${id}`);
 
     useEffect(() => {
-        if(data){
+        if (data) {
             setExpense(data);
         }
-    },[data]);
+    }, [data]);
 
     return (
         <div>
@@ -21,16 +21,47 @@ const Expense = () => {
 
             {expense && (
                 <>
-            <b>Product Id: {expense._id}</b>
-            <b>Product Name: {expense.productName}</b>
-            <b>Number of Products: {expense.numberOfProducts}</b>
-            <b>Total Amount: {expense.totalAmount}</b>
-            <b>Notes: {expense.notes}</b>
-            <b>Type of Expense: {expense.typeOfExpense}</b>
-            <b>Created At: {expense.createdAt}</b>
-            <b>Updated At: {expense.updatedAt}</b>
-            </>)}
-        </div> 
+                <h2>Product Data:</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Attributes</th>
+                                <th scope="col">Values</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Product Name</th>
+                                <td>{expense.productName}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Number Of Products</th>
+                                <td>{expense.numberOfProducts}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Total Amount</th>
+                                <td colspan="2">{expense.totalAmount}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Notes</th>
+                                <td colspan="2">{expense.notes}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Type Of Expense</th>
+                                <td colspan="2">{expense.typeOfExpense}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Created At</th>
+                                <td colspan="2">{expense.createdAt}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Updated At</th>
+                                <td colspan="2">{expense.updatedAt}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </>)}
+        </div>
     );
 }
 

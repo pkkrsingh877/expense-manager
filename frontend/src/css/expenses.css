@@ -2,11 +2,11 @@
     min-width: 250px;
 }
 
-.buttons{
-    display: grid;
-    grid-template-columns: 5fr 1fr 5fr;
+.card-title > a{
+    text-decoration: none;
 }
 
-.buttons:nth-child(n){
-    margin: 1rem 1rem;
+.buttons{
+    display: flex;
+    flex-direction: row;
 }

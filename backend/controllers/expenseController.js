@@ -2,7 +2,14 @@ const Expense = require("../models/expense");
 
 const getExpenses = async (req, res) => {
     try {
-        const expenses = await Expense.find({});
+        let expenses = await Expense.find({});
+        expenses.forEach(expense => {
+            let date = new Date(expense.updatedAt);
+            const time = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+            const formattedDate = date.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' });
+            const timeAndDate = time + formattedDate;
+            expense.updatedAt = timeAndDate;
+        });
         res.status(200).json(expenses);
     } catch (error) {
         console.log(error);

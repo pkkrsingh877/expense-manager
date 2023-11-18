@@ -40,7 +40,8 @@ const Expenses = () => {
                         <h5 className="card-title"><Link to={`/expense/${expense._id}`}>
                             {expense.productName}
                         </Link></h5>
-                        <p className="card-text">&#x20B9;{expense.totalAmount}</p>
+                        <p className="card-text">Price: &#x20B9;{expense.totalAmount}</p>
+                        <p className="card-text">Last Updated At: {expense.updatedAt}</p>
                         <div className="buttons">
                         <Link to={`/expense/update/${expense._id}`} className="updateButton btn btn-primary">
                             Update

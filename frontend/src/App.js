@@ -5,6 +5,7 @@ import Expenses from './components/Expenses/Expenses';
 import Update from './components/Expenses/Update';
 import NotFound from './components/NotFound';
 import About from './components/About';
+import Signup from './components/Auth/Signup';
 import Navbar from './components/Utilities/Navbar';
 import './css/content.css';
 
@@ -15,6 +16,8 @@ function App() {
         <Navbar />
         <div className="content">
           <Routes>
+            <Route exact path="/auth/login" element={<Login />} />
+            <Route exact path="/auth/signup" element={<Signup/>} />
             <Route exact path="/expense" element={<Expenses />} />
             <Route path="/expense/create" element={<Create />} />
             <Route path="/expense/:id" element={<Expense />} />

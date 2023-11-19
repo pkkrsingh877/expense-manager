@@ -6,6 +6,7 @@ import Update from './components/Expenses/Update';
 import NotFound from './components/NotFound';
 import About from './components/About';
 import Signup from './components/Auth/Signup';
+import Login from './components/Auth/Login';
 import Navbar from './components/Utilities/Navbar';
 import './css/content.css';
 

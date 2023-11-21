@@ -16,7 +16,8 @@ const signup = async (req, res) => {
 const login = async (req, res) => {
     try {
         const {  username, password } = req.body;
-        const user = await User.findOne({ username });
+        const user = await User.login(username, password);
+        console.log(user);
         res.status(200).json(user);
     } catch (error) {
         console.trace(error);

@@ -13,7 +13,7 @@ const Login = () => {
         event.preventDefault();
 
         // Add the expense to your backend here
-        const response = await fetch('http://localhost:8000/auth/signup', {
+        const response = await fetch('http://localhost:8000/auth/login', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -29,7 +29,7 @@ const Login = () => {
 
     return (
         <>
-            <h4>Create Account: </h4>
+            <h4 className='display-4'>Login: </h4>
             <form className='form' onSubmit={handleSubmit}>
                 Username:
                 <input
@@ -44,12 +44,6 @@ const Login = () => {
                     placeholder="password"
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
-                />
-                Notes:
-                <textarea
-                    placeholder="Notes"
-                    value={notes}
-                    onChange={(event) => setNotes(event.target.value)}
                 />
                 <button type="submit">Login</button>
             </form>

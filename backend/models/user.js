@@ -68,3 +68,7 @@ userSchema.statics.login = async function(username, password){
         throw Error('Username is incorrect!')
     }
 }
+
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;

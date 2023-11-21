@@ -45,12 +45,6 @@ const Signup = () => {
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
                 />
-                Notes:
-                <textarea
-                    placeholder="Notes"
-                    value={notes}
-                    onChange={(event) => setNotes(event.target.value)}
-                />
                 <button type="submit">Signup</button>
             </form>
         </>

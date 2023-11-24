@@ -24,7 +24,8 @@ const Login = () => {
         });
 
         const message = await response.json();
-        navigate(`/user/${message.id}`);
+        console.log(message._id);
+        // navigate(`/user/${message.id}`);
     };
 
     return (

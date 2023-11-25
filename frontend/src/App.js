@@ -5,6 +5,7 @@ import Expenses from './components/Expenses/Expenses';
 import Update from './components/Expenses/Update';
 import NotFound from './components/NotFound';
 import About from './components/About';
+import Profile from './components/User/Profile';
 import Signup from './components/Auth/Signup';
 import Login from './components/Auth/Login';
 import Navbar from './components/Utilities/Navbar';
@@ -23,6 +24,7 @@ function App() {
             <Route path="/expense/create" element={<Create />} />
             <Route path="/expense/:id" element={<Expense />} />
             <Route path="/expense/update/:id" element={<Update />} />
+            <Route path="/user/:id" element={<Profile />}></Route>
             <Route path="/about" element={<NotFound />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

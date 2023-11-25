@@ -24,7 +24,7 @@ const Signup = () => {
         });
 
         const message = await response.json();
-        navigate(`/user/${message.id}`);
+        navigate(`/user/${message.userId}`);
     };
 
     return (

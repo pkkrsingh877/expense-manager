@@ -1,27 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../../css/form.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Profile = () => {
 
     const [username, setUsername] = useState('');
     const navigate = useNavigate();
+    const { id } = useParams();
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    useEffect(() => {
+        const getUser = async () => {
 
-        // Add the expense to your backend here
-        const response = await fetch('http://localhost:8000/user/:id', {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        });
-
-        const message = await response.json();
-        console.log(message)
-    };
-
+            const response = await fetch(`http://localhost:8000/user/${id}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            });
+    
+            const message = await response.json();
+            setUsername(message.username);
+        };
+    
+        getUser();
+    })
     return (
         <>
             <h4 className='display'>Profile</h4>

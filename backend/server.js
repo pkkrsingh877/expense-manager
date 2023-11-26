@@ -28,7 +28,7 @@ app.use(cookieParser());
 
 // cors setup
 app.use(cors({
-    origin: 'http://localhost:3000', // Adjust this to your frontend's origin
+    origin: '*', // Adjust this to your frontend's origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Add DELETE method
     allowedHeaders: ['Content-Type', 'Authorization'], // Add headers you want to allow
     credentials: true, // Allow credentials (cookies)

@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import '../../css/form.css';
+import { useCookies } from 'react-cookie'; 
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-
+    
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [cookies, setCookie, removeCookie] = useCookies(['jwt']);
 
     const navigate = useNavigate();
 
@@ -24,8 +26,14 @@ const Login = () => {
         });
 
         const message = await response.json();
-        console.log(message.userId);
-        navigate(`/user/${message.userId}`);
+        console.log(message);
+        setCookie("jwt", message.token, {
+            maxAge: 3600*24*30, 
+            httpOnly: true, 
+            path: "/",
+            sameSite: "None"
+        });
+        // navigate(`/user/${message.userId}`);
     };
 
     return (
@@ -41,7 +49,7 @@ const Login = () => {
                 />
                 Password:
                 <input
-                    type="text"
+                    type="password"
                     placeholder="password"
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}

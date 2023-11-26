@@ -21,10 +21,10 @@ const Signup = () => {
             body: JSON.stringify({
                 username, password
             }),
+            credentials: 'include'
         });
 
         const message = await response.json();
-        localStorage.setItem("jwt", message.token);
         navigate(`/user/${message.userId}`);
     };
 

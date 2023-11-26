@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import '../../css/form.css';
-import { useCookies } from 'react-cookie'; 
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [cookies, setCookie, removeCookie] = useCookies(['jwt']);
 
     const navigate = useNavigate();
 
@@ -18,21 +16,16 @@ const Login = () => {
         const response = await fetch('http://localhost:8000/auth/login', {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 username, password
             }),
+            credentials: 'include'
         });
 
         const message = await response.json();
         console.log(message);
-        setCookie("jwt", message.token, {
-            maxAge: 3600*24*30, 
-            httpOnly: true, 
-            path: "/",
-            sameSite: "None"
-        });
         // navigate(`/user/${message.userId}`);
     };
 

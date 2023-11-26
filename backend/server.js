@@ -23,14 +23,13 @@ databaseSetup();
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
 app.use(cookieParser());
 
 // cors setup
 app.use(cors({
-    origin: '*', // Adjust this to your frontend's origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Add DELETE method
-    allowedHeaders: ['Content-Type', 'Authorization'], // Add headers you want to allow
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true, // Allow credentials (cookies)
 }));
 

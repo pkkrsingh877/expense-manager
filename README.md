@@ -6,6 +6,10 @@
 4. Allow users to get single expense in single page
 5. Allow users to update the expense
 
+# Most Important
+
+1. Fix middleware error. Issue is middleware not being sent as part of request
+
 # Todo
 
 1. Allow users to login

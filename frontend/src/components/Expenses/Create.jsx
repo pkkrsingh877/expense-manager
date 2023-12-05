@@ -19,11 +19,13 @@ const Create = () => {
         const response = await fetch('http://localhost:8000/expense', {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
             body: JSON.stringify({
                 productName, totalAmount, numberOfProducts, notes, typeOfExpense
             }),
+            credentials: 'include'
         });
 
         const message = await response.json();

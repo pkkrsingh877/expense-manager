@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import '../../css/form.css';
 import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const Signup = () => {
 
+    const [cookies, setCookie, removeCookie] = useCookies([]);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -16,7 +18,7 @@ const Signup = () => {
         const response = await fetch('http://localhost:8000/auth/signup', {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 username, password
@@ -25,6 +27,13 @@ const Signup = () => {
         });
 
         const message = await response.json();
+        setCookie('jwt', message.token, {
+            expiresIn: '7d',
+            path: '/',
+            secure: true,
+            sameSite: 'None',  // Corrected attribute name
+            httpOnly: true,
+          });
         navigate(`/user/${message.userId}`);
     };
 

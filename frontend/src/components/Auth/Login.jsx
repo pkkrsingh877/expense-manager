@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import '../../css/form.css';
 import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const Login = () => {
-    
+
+    const [cookies, setCookie, removeCookie] = useCookies([]);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -25,8 +27,9 @@ const Login = () => {
         });
 
         const message = await response.json();
-        console.log(message);
-        // navigate(`/user/${message.userId}`);
+        setCookie('jwt', message.token, { path: '/' });
+        console.log(message, cookies['jwt']);
+        navigate(`/user/${message.userId}`);
     };
 
     return (

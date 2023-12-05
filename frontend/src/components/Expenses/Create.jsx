@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import '../../css/form.css';
 import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const Create = () => {
 
@@ -26,6 +27,7 @@ const Create = () => {
         });
 
         const message = await response.json();
+        console.log(message)
         navigate(`/expense/${message.id}`);
     };
 

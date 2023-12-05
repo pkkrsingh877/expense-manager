@@ -1,10 +1,11 @@
 const express = require('express');
-const app =  express();
+const app = express();
 const morgan = require('morgan');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 const mongoose = require('mongoose');
+const authenticate = require('./middlewares/authenticate');
 
 //database setup
 const databaseSetup = async () => {
@@ -28,9 +29,9 @@ app.use(cookieParser());
 // cors setup
 app.use(cors({
     origin: 'http://localhost:3000',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true, // Allow credentials (cookies)
+    credentials: true,
 }));
 
 // Files for Route Handlers
@@ -39,7 +40,7 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 
 // Middleware for Routes
-app.use('/expense', expenseRoutes);
+app.use('/expense', authenticate, expenseRoutes);
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 

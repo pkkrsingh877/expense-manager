@@ -4,14 +4,14 @@ const authenticate = require('../middlewares/authenticate');
 
 const { getExpenses, createExpense, getExpense, updateExpense, deleteExpense } = require('../controllers/expenseController');
 
-router.get('/', authenticate, getExpenses);
+router.get('/', getExpenses);
 
-router.get('/:id', authenticate, getExpense);
+router.get('/:id', getExpense);
 
-router.post('/', authenticate, createExpense);
+router.post('/', createExpense);
 
-router.patch('/:id', authenticate, updateExpense);
+router.patch('/:id', updateExpense);
 
-router.delete('/', authenticate, deleteExpense);
+router.delete('/', deleteExpense);
 
 module.exports = router; 
